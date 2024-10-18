@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クレジットカード決済フォーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: calc(100% - 20px); /* 右側に余白を確保 */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>クレジットカード決済</h2>
+    <label for="amount">金額 (円):</label>
+    <input type="number" id="amount" required readonly>
+
+    <label for="cardNumber">カード番号:</label>
+    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" placeholder="123" required>
+
+    <button id="payButton">支払う</button>
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+    // URLから金額を取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount');
+
+    // 金額を入力フィールドに設定
+    document.getElementById('amount').value = amount;
+
+    document.getElementById('payButton').addEventListener('click', function() {
+        const cardNumber = document.getElementById('cardNumber').value;
+        const cvv = document.getElementById('cvv').value;
+
+        // 本来はここでサーバーにリクエストを送る処理を行う
+
+        // 簡単な確認メッセージを表示
+        document.getElementById('message').textContent = `${amount}円支払いました。`;
+
+        // タブを自動で閉じる
+        setTimeout(() => {
+            window.close();
+        }, 2000); // 2秒後にタブを閉じる
+    });
+</script>
+
+</body>
+</html>
